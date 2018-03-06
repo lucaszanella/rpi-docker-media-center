@@ -1,19 +1,29 @@
 version: '3'
+
 services:
   transmission:
     build: ./rpi-transmission
     image: rpi-transmission
+    ports:
+     - "9091:9091"
+     - "51413:51413"
+     - "51413:51413/udp"
     volumes:
-     - "/media/external:/downloads"
+     - "/home/pi/transmission:/etc/transmission"
+     - "/media/external:/home/downloads"
      - "/home/transmission-watch:/home/transmission-watch"
   samba:
     build: ./rpi-samba
     image: rpi-samba
+    stdin_open: true
     volumes:
-     - "/media/external:/data/share"
+     - "/media/external:/data/share:ro"
   kodi:
     build: ./kodi-rpi
     image: kodi-rpi
+    ports:
+     - "127.0.0.1:8080:8080"
+     - "127.0.0.1:9777:9777/udp"
     devices:
      - "/dev/tty0:/dev/tty0"
      - "/dev/tty2:/dev/tty2"
@@ -25,5 +35,6 @@ services:
      - "/var/run/dbus:/var/run/dbus"
      - "/etc/localtime:/etc/localtime:ro"
      - "/etc/timezone:/etc/timezone:ro"
-     - "/home/pi/kodi-rpi/config:/config/kodi"
-     - "/home/pi/kodi-rpi/data:/data"
+     - "/home/pi/kodi/config:/config/kodi"
+     - "/home/pi/kodi/data:/data"
+     - "/home/pi/.kodi:/home/pi/.kodi"
