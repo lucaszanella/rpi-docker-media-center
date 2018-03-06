@@ -1,18 +1,18 @@
 version: '3'
 services:
   transmission:
-    build: .
+    build: ./rpi-transmission
     image: rpi-transmission
     volumes:
      - "/media/external:/downloads"
      - "/home/transmission-watch:/home/transmission-watch"
   samba:
-    build: .
+    build: ./rpi-samba
     image: rpi-samba
     volumes:
      - "/media/external:/data/share"
   kodi:
-    build: .
+    build: ./kodi-rpi
     image: kodi-rpi
     devices:
      - "/dev/tty0:/dev/tty0"
