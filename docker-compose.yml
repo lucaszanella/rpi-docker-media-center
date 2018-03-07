@@ -9,10 +9,12 @@ services:
      - "51413:51413"
      - "51413:51413/udp"
     volumes:
-     - "/home/pi/transmission:/etc/transmission"
+     - "/home/pi/transmission_docker/transmission:/etc/transmission"
+     - "/home/pi/transmission_docker/var_lib_transmission-daemon:/var/lib/transmission-daemon"
+     - "/home/pi/transmission_docker/transmission-daemon:/home/transmission-daemon"
+     - "/home/pi/transmission_docker/transmission-watch:/home/transmission-watch"
      - "/media/external:/home/downloads"
-     - "/home/transmission-watch:/home/transmission-watch"
-     - "/home/pi/transmission/var_lib_transmission-daemon:/var/lib/transmission-daemon"
+
   samba:
     build: ./rpi-samba
     image: rpi-samba
