@@ -1,5 +1,18 @@
 # Docker Media Center with Kodi, Transmission and Samba
 
+To clone the submodules too, use 
+
+```
+git clone --recurse-submodules https://github.com/lucaszanella/rpi-docker-media-center
+```
+
+If you already cloned and noted they are missing:
+
+```
+cd rpi-docker-media-center
+git submodule update --init --recursive
+```
+
 IMPORTANT: you must add/edit:
 
 ```
