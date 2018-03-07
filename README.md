@@ -1,6 +1,6 @@
 # Docker Media Center with Kodi, Transmission and Samba
 
-To clone the submodules too, use 
+This repo has git submodules. To clone everything, use:
 
 ```
 git clone --recurse-submodules https://github.com/lucaszanella/rpi-docker-media-center
