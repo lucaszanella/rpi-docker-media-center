@@ -12,6 +12,7 @@ services:
      - "/home/pi/transmission:/etc/transmission"
      - "/media/external:/home/downloads"
      - "/home/transmission-watch:/home/transmission-watch"
+     - "/home/pi/transmission/var_lib_transmission-daemon:/var/lib/transmission-daemon"
   samba:
     build: ./rpi-samba
     image: rpi-samba
