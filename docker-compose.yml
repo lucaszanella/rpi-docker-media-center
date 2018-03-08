@@ -44,6 +44,7 @@ services:
      - "/dev/snd:/dev/snd"
      - "/dev/vchiq:/dev/vchiq"
     volumes:
+     - "/media/external:/home/pi/movies"
      - "/var/run/dbus:/var/run/dbus"
      - "/etc/localtime:/etc/localtime:ro"
      - "/etc/timezone:/etc/timezone:ro"
