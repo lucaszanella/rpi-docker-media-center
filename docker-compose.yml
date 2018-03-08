@@ -4,6 +4,7 @@ services:
   transmission:
     build: ./rpi-transmission
     image: rpi-transmission
+    restart: unless-stopped
     ports:
      - "9091:9091"
      - "51413:51413"
@@ -18,6 +19,7 @@ services:
   samba:
     build: ./rpi-samba
     image: rpi-samba
+    restart: unless-stopped
     stdin_open: true
     volumes:
      - "/media/external:/data/share:ro"
@@ -27,10 +29,10 @@ services:
      - "138:138/udp"
      - "139:139"
 
-
   kodi:
     build: ./kodi-rpi
     image: kodi-rpi
+    restart: unless-stopped    
     ports:
      - "127.0.0.1:8080:8080"
      - "127.0.0.1:9777:9777/udp"
