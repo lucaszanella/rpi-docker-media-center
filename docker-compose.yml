@@ -6,7 +6,7 @@ services:
     image: rpi-transmission
     restart: unless-stopped
     ports:
-     - "9091:9091"
+     - "127.0.0.1:9091:9091"
      - "51413:51413"
      - "51413:51413/udp"
     volumes:
