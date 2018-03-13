@@ -1,9 +1,9 @@
-[submodule "kodi-rpi"]
-	path = kodi-rpi
-	url = https://github.com/lucaszanella/kodi-rpi
 [submodule "rpi-transmission"]
 	path = rpi-transmission
 	url = https://github.com/lucaszanella/rpi-transmission
 [submodule "rpi-samba"]
 	path = rpi-samba
 	url = https://github.com/lucaszanella/rpi-samba
+[submodule "kodi-rpi"]
+	path = kodi-rpi
+	url = https://github.com/lucaszanella/kodi-rpi
