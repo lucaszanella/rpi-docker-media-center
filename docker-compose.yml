@@ -12,7 +12,10 @@ services:
     volumes:
      - "/home/pi/transmission_docker/transmission:/etc/transmission"
      - "/home/pi/transmission_docker/var_lib_transmission-daemon:/var/lib/transmission-daemon"
-     - "/home/pi/transmission_docker/transmission-daemon:/etc/transmission-daemon"
+     #Map everything from transmission-daemon folder except settings.json because it erases the original when mounted for the first time
+     - "/home/pi/transmission_docker/transmission-daemon/blocklists:/etc/transmission-daemon/blocklists"
+     - "/home/pi/transmission_docker/transmission-daemon/torrents:/etc/transmission-daemon/torrents"
+     - "/home/pi/transmission_docker/transmission-daemon/resume:/etc/transmission-daemon/resume"
      - "/home/pi/transmission_docker/transmission-watch:/home/transmission-watch"
      - "/media/external:/home/downloads"
 
