@@ -2,7 +2,9 @@ version: '3'
 
 services:
   transmission:
-    build: ./rpi-transmission
+    build:
+      context: .
+      dockerfile: transmission.Dockerfile
     image: rpi-transmission
     restart: unless-stopped
     ports:
@@ -20,7 +22,9 @@ services:
      - "/media/external:/home/downloads"
 
   samba:
-    build: ./rpi-samba
+    build:
+      context: .
+      dockerfile: samba.Dockerfile
     image: rpi-samba
     restart: unless-stopped
     stdin_open: true
@@ -28,29 +32,42 @@ services:
      - "/media/external:/data/share:ro"
     ports:
      - "445:445"
-     - "137:137/udp" 
+     - "137:137/udp"
      - "138:138/udp"
      - "139:139"
-
-  kodi:
-    build: ./kodi-rpi
-    image: kodi-rpi
-    restart: unless-stopped    
-    ports:
-     - "127.0.0.1:8080:8080"
-     - "127.0.0.1:9777:9777/udp"
-    devices:
-     - "/dev/tty0:/dev/tty0"
-     - "/dev/tty2:/dev/tty2"
-     - "/dev/fb0:/dev/fb0"
-     - "/dev/input:/dev/input"
-     - "/dev/snd:/dev/snd"
-     - "/dev/vchiq:/dev/vchiq"
+  couchpotato:
+    build:
+      context: .
+      dockerfile: couchpotato.Dockerfile
+    image: couchpotato
+    restart: unless-stopped
+    stdin_open: true
     volumes:
-     - "/media/external:/home/pi/movies"
-     - "/var/run/dbus:/var/run/dbus"
-     - "/etc/localtime:/etc/localtime:ro"
-     - "/etc/timezone:/etc/timezone:ro"
-     - "/home/pi/kodi/config:/config/kodi"
-     - "/home/pi/kodi/data:/data"
-     - "/home/pi/.kodi:/home/pi/.kodi"
+     - "/home/pi/transmission_docker/transmission-watch:/movies"
+     - "/home/pi/couchpotato_config/config:/config"
+    ports:
+     - "127.0.0.1:5050:5050"
+#  kodi:
+#    build:
+#      context: .
+#      dockerfile: kodi.Dockerfile
+#    image: kodi-rpi
+#    restart: unless-stopped
+#    ports:
+#     - "127.0.0.1:8080:8080"
+#     - "127.0.0.1:9777:9777/udp"
+#    devices:
+#     - "/dev/tty0:/dev/tty0"
+#     - "/dev/tty2:/dev/tty2"
+#     - "/dev/fb0:/dev/fb0"
+#     - "/dev/input:/dev/input"
+#     - "/dev/snd:/dev/snd"
+#     - "/dev/vchiq:/dev/vchiq"
+#    volumes:
+#     - "/media/external:/home/pi/movies"
+#     - "/var/run/dbus:/var/run/dbus"
+#     - "/etc/localtime:/etc/localtime:ro"
+#     - "/etc/timezone:/etc/timezone:ro"
+#     - "/home/pi/kodi/config:/config/kodi"
+#     - "/home/pi/kodi/data:/data"
+#     - "/home/pi/.kodi:/home/pi/.kodi"
